@@ -1,0 +1,7 @@
+[user]
+	name = Brian Holtkamp
+	email = brholtkamp@gmail.com
+[core]
+	editor = vim
+[push]
+	default = simple
