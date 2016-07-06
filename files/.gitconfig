@@ -1,7 +1,10 @@
 [user]
-	name = Brian Holtkamp
-	email = brholtkamp@gmail.com
+    name = Brian Holtkamp
+    email = brholtkamp@gmail.com
 [core]
-	editor = vim
+    editor = vim
+    autocrlf = true
+    safecrlf = false
+    eol = lf
 [push]
-	default = simple
+    default = simple
