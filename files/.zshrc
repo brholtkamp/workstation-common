@@ -14,7 +14,6 @@ if ! zgen saved; then
 
     zgen load sharat87/zsh-vim-mode                     # Vim mode
     zgen load zsh-users/zsh-completions                 # Adds additional completions to other programs
-    zgen load zsh-users/zsh-history-substring-search    # Searches through previous
 
     zgen save
 fi
@@ -26,9 +25,7 @@ setopt always_to_end
 
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
-
-# Enable partial string completion
-zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")'
 
 ###########
 # Options #
