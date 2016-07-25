@@ -4,3 +4,5 @@
 #
 
 include_recipe 'workstation-common::install_dotfiles'
+
+include_recipe 'chef-client::default'
