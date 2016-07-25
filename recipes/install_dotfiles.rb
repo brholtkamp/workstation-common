@@ -10,6 +10,6 @@ node['workstation']['dotfiles'].each do |file|
 end
 
 template "#{node['workstation']['home']}/.gitconfig" do
-  source 'gitignore.erb'
+  source 'gitconfig.erb'
   variables name: node['workstation']['name'], email: node['workstation']['email']
 end
