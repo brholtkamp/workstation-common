@@ -1,4 +1,4 @@
-default['workstation']['user'] = 'Brian'
+default['workstation']['user'] = ENV['USER']
 default['workstation']['home'] = ENV['HOME']
 default['workstation']['packages'] = %w(git man tig vim zsh)
 default['workstation']['dotfiles'] = %w(editorconfig vimrc zshrc)
