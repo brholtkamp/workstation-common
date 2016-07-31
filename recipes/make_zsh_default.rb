@@ -4,7 +4,6 @@
 #
 
 # Set ZSH as the main shell
-user node['workstation']['user'] do
-  action :modify
-  shell '/usr/bin/zsh'
+execute 'switching shell to ZSH' do
+    command "chsh -s $(which zsh) #{node['workstation']['user']}"
 end
