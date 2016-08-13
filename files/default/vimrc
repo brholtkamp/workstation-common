@@ -24,7 +24,6 @@ call dein#add('vim-airline/vim-airline')            " Status bar
 call dein#add('vim-airline/vim-airline-themes')     " More colors!
 call dein#add('edkolev/tmuxline.vim')               " Color theme for tmux
 call dein#add('airblade/vim-gitgutter')             " Git line status
-call dein#add('ntpeters/vim-airline-colornum')      " Adds the status bar color to the current line
 
 " Syntax handling
 call dein#add('editorconfig/editorconfig-vim')      " Loads ~/.editorconfig
@@ -47,7 +46,6 @@ set smarttab
 set autochdir
 set mouse=a
 set backspace=indent,eol,start
-set cursorline
 
 " Misc Settings
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
