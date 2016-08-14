@@ -14,6 +14,7 @@ if ! zgen saved; then
 
     zgen load sharat87/zsh-vim-mode                     # Vim mode
     zgen load zsh-users/zsh-completions                 # Adds additional completions to other programs
+    zgen load zsh-users/zsh-history-substring-search    # Adds in history search through J/K
 
     zgen save
 fi

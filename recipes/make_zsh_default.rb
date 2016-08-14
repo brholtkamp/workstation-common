@@ -5,5 +5,5 @@
 
 # Set ZSH as the main shell
 execute 'switching shell to ZSH' do
-    command "chsh -s $(which zsh) #{node['workstation']['user']}"
+  command "chsh -s $(which zsh) #{node['workstation']['user']}"
 end

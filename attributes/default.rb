@@ -1,10 +1,12 @@
-default['workstation']['user'] = ENV['USER']
-default['workstation']['home'] = ENV['HOME']
-default['workstation']['name'] = 'Brian Holtkamp'
-default['workstation']['email'] = 'brholtkamp@gmail.com'
+default['workstation']['user'] = nil
+default['workstation']['home'] = nil
+default['workstation']['name'] = nil
+default['workstation']['email'] = nil
 
-default['workstation']['packages'] = %w(git tig vim)
-default['workstation']['dotfiles'] = %w(editorconfig vimrc zshrc)
 default['workstation']['applications'] = []
+default['workstation']['directories'] = []
+default['workstation']['files'] = []
+default['workstation']['dotfiles'] = []
+default['workstation']['packages'] = []
 
 default['chef_client']['interval'] = 600
