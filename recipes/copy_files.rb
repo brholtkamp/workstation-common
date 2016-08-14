@@ -7,6 +7,7 @@ node['workstation']['directories'].each do |path|
   remote_directory path do
     recursive true
     files_owner node['workstation']['user']
+    owner node['workstation']['user']
   end
 end
 
