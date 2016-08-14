@@ -55,8 +55,6 @@ done
 # Aliases #
 ###########
 
-alias ll="ls -laG --color=auto"
-alias ls="ls -G --color=auto"
 alias resource="source ~/.zshrc"
 
 #########
