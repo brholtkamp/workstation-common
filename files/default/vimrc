@@ -77,7 +77,7 @@ let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
 
 " GVim/MacVim settings
-set guifont=Terminus\ (TTF):h9
+set guifont=Terminus\ (TTF):h12
 set guioptions-=r
 set guioptions-=L
 
