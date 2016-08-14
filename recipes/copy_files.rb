@@ -8,11 +8,13 @@ node['workstation']['directories'].each do |path|
     recursive true
     files_owner node['workstation']['user']
     owner node['workstation']['user']
+    cookbook node['workstation']['file_cookbook']
   end
 end
 
 node['workstation']['files'].each do |file|
   cookbook_file file do
     owner node['workstation']['user']
+    cookbook node['workstation']['file_cookbook']
   end
 end
