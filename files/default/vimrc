@@ -14,11 +14,22 @@ call dein#add('Shougo/dein.vim')                    " Package manager
 
 " Plugins
 call dein#add('scrooloose/nerdtree')                " File browser (Ctrl+f)
+call dein#add('jistr/vim-nerdtree-tabs')            " Makes sure nerdtree only exists once
+call dein#add('tpope/vim-commentary')               " Comments out lines (gc[#c])
+call dein#add('tpope/vim-fugitive')                 " Git wrapper
 call dein#add('ctrlpvim/ctrlp.vim')                 " File search (Ctrl+P)
 call dein#add('bling/vim-bufferline')               " Adds buffers to the status bar
 call dein#add('JamshedVesuna/vim-markdown-preview') " Allows previews of .md files (Ctrl+M)
+call dein#add('Raimondi/delimitMate')               " Automatically adds in braces and syntax
+call dein#add('Yggdroot/indentLine')                " Shows current tablevel of the scope
+call dein#add('scrooloose/syntastic')               " Adds in syntax checking for tons of languages
+call dein#add('davidhalter/jedi-vim')               " Autocompletion library
+
+" Allow interactive command execution in Vim
+call dein#add('Shougo/vimproc.vim',{'build':'make'})
 
 " Theming
+call dein#add('vim-scripts/CSApprox')               " Makes GVim themes work in console vim
 call dein#add('flazz/vim-colorschemes')             " Colors!
 call dein#add('vim-airline/vim-airline')            " Status bar
 call dein#add('vim-airline/vim-airline-themes')     " More colors!
@@ -26,7 +37,9 @@ call dein#add('edkolev/tmuxline.vim')               " Color theme for tmux
 call dein#add('airblade/vim-gitgutter')             " Git line status
 
 " Syntax handling
+call dein#add('scrooloose/syntastic')               " Adds in syntax checking for tons of languages
 call dein#add('editorconfig/editorconfig-vim')      " Loads ~/.editorconfig
+call dein#add('bronson/vim-trailing-whitespace')    " Highlights trailing whitespace in editor
 
 " Syntax highlighting
 call dein#add('markcornick/vim-bats')               " Syntax highlighting for Bash Automated Testing System
@@ -40,12 +53,34 @@ endif
 " dein ---------------------------------------
 
 " Vim settings
-syntax on
-set number
-set smarttab
-set autochdir
-set mouse=a
-set backspace=indent,eol,start
+syntax on                                           " Handle syntax settings
+set ruler                                           " Show the current location of the cursor
+set number                                          " Show line numbers
+set smarttab                                        " Set tabs correctly
+set softtabstop=0                                   " Sets the backspace to do 4 spaces
+set shiftwidth=4                                    " Default width of 4
+set expandtab                                       " Inserts spaces
+set hidden                                          " Enable hidden buffers
+set hlsearch                                        " Highlight all search results
+set incsearch                                       " Incremental searching
+set ignorecase                                      " Ignore cases on searching
+set smartcase                                       " Attempt to parse case correctly
+set nobackup                                        " Doesn't store the backup file
+set noswapfile                                      " Doesn't create a swp file
+set fileformats=unix,dos,mac                        " Set our acceptable formats
+set showcmd                                         " Show the command as you're typing it
+set autochdir                                       " Make the directory of the file the current working directory
+set shell=/bin/sh                                   " Use the plain shell
+set backspace=indent,eol,start                      " Fix backspacing indents
+
+" Mouse
+set mouse=a                                         " Enable mouse
+set mousemodel=popup                                " Make right clicks do a popup menu
+
+" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
 
 " Misc Settings
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
@@ -57,11 +92,14 @@ let g:ctrlp_cmd='CtrlPMRU'
 
 " NERDTree settings
 map <c-f> :NERDTreeToggle<CR>
+let g:NERDTreeChDirMode=2
+let g:NERDTreeWinSize=50
+let g:nerdtree_tabs_focus_on_files=1
 
 " vim-markdown-preview settings
 let vim_markdown_preview_toggle=1
 let vim_markdown_preview_hotkey='<c-m>'
-let_markdown_preview_browser='Google Chrome'
+let markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_github=1
 
 " Theming
@@ -81,12 +119,25 @@ set guifont=Terminus\ (TTF):h12
 set guioptions-=r
 set guioptions-=L
 
+" CSApprox
+let g:CSApprox_loaded=1
+
+" Indentline
+let g:indentLine_enabled=1
+let g:indentLine_concealcursor=0
+let g:indentLine_char='┆'
+let g:indentLine_faster=1
+
 " Airline settings
 set laststatus=2 " Always show the statusline
 set wildmenu " Tab completion within airline
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='tomorrow'
+let g:airline#extensions#syntastic#enabled=1
+let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tagbar#enabled=1
 
 " Tmuxline settings
 let g:tmuxline_powerline_separators=0
