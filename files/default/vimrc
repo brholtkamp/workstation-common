@@ -25,9 +25,6 @@ call dein#add('Yggdroot/indentLine')                " Shows current tablevel of 
 call dein#add('scrooloose/syntastic')               " Adds in syntax checking for tons of languages
 call dein#add('davidhalter/jedi-vim')               " Autocompletion library
 
-" Allow interactive command execution in Vim
-call dein#add('Shougo/vimproc.vim',{'build':'make'})
-
 " Theming
 call dein#add('vim-scripts/CSApprox')               " Makes GVim themes work in console vim
 call dein#add('flazz/vim-colorschemes')             " Colors!
