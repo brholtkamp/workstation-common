@@ -57,6 +57,7 @@ done
 ###########
 
 alias resource="source ~/.zshrc"
+alias ls="ls --color=auto"
 
 #########
 # Theme #
