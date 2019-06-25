@@ -3,30 +3,23 @@
 ###########
 
 # See if zgen is installed, if not, then install it
-if [ ! -d "${HOME}/.zsh/zgen" ]; then
-    git clone https://github.com/tarjoilija/zgen ~/.zsh/zgen/
+if [ ! -d "${HOME}/.zsh/antigen" ]; then
+    git clone https://github.com/zsh-users/antigen.git "${HOME}/.zsh/antigen/"
 fi
 
-source "${HOME}/.zsh/zgen/zgen.zsh"
+source "${HOME}/.zsh/antigen/antigen.zsh"
 
-if ! zgen saved; then
-    echo "Creating a new zgen save"
+antigen use oh-my-zsh
+antigen bundle sharat87/zsh-vim-mode # Vim mode
+antigen bundle zsh-users/zsh-completions # Adds additional completions to other programs
+antigen bundle zsh-users/zsh-history-substring-search # Adds in history search through J/K
+antigen theme jackharrisonsherlock/common # Theme
 
-    zgen load sharat87/zsh-vim-mode                     # Vim mode
-    zgen load zsh-users/zsh-completions                 # Adds additional completions to other programs
-    zgen load zsh-users/zsh-history-substring-search    # Adds in history search through J/K
+antigen apply
 
-    zgen save
-fi
-
-# Enable highlighting for tab completion
-setopt auto_menu
-setopt complete_in_word
-setopt always_to_end
-
-autoload -U compinit && compinit
-zstyle ':completion:*' menu select
-zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")'
+# Setup ColorLS https://github.com/athityakumar/colorls
+# Requires https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Terminus/terminus-ttf-4.40.1/Regular/complete/Terminess%20(TTF)%20Nerd%20Font%20Complete.ttf
+source $(dirname $(gem which colorls))/tab_complete.sh
 
 ###########
 # Options #
@@ -34,7 +27,7 @@ zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export EDITOR=vim
+export EDITOR=nvim
 
 ############
 # Software #
@@ -44,64 +37,67 @@ export EDITOR=vim
 export VAGRANT_HOME="${HOME}/.vagrant.d"
 export VAGRANT_DOTFILE_PATH="${HOME}"
 
-######
-# OS #
-######
+# Android
+export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
 
-for file in ~/.zshrc.*; do
-    source "$file"
-done
+# Fastlane
+export PATH="$HOME/.fastlane/bin:$PATH"
 
 ###########
 # Aliases #
 ###########
 
 alias resource="source ~/.zshrc"
+alias vim="nvim"
+alias vi="nvim"
+alias vimdiff="nvim -d"
+alias ls="colorls -A --sd"
+alias ll="ls -lA"
 
 #########
 # Theme #
 #########
 
-# Initialize colors.
-autoload -U colors
-colors
-
-# Set the initial values
-_USERNAME=$USER
-_DIRECTORY=$PWD
-_HOST=$HOST
-
-# Determine username variables and colors
-if [[ $EUID -eq 0 ]]; then
-    _USERNAME="%{$fg_bold[red]%}%n"
-    _SYMBOL="%{$fg_bold[red]%}#"
-else
-    _USERNAME="%{$fg_bold[cyan]%}%n"
-    _SYMBOL="%{$fg_bold[cyan]%}$"
-fi
-_USERNAME="$_USERNAME%{$reset_color%}"
-_SYMBOL="$_SYMBOL%{$reset_color%}"
-
-# Build host string
-_HOST="%{$fg_bold[magenta]%}%m%{$reset_color%}"
-
-# Build directory string
-_DIRECTORY="%{$fg_bold[blue]%}%~%{$reset_color%}"
-
-# Build up the last command return
-_RETURN="$fg_bold[grey]%?%{$reset_color%}"
-
-# Load in VCS info
-autoload -Uz vcs_info
-
-# Set the VCS formatting
-zstyle ':vcs_info:*' formats "on %{$fg_bold[green]%}%b%{$reset_color%}"
-
-# Run the vcs_info command before the prompt updates
-precmd () { vcs_info }
-
-setopt prompt_subst
-
-# Build prompt
-PROMPT='$_USERNAME at $_HOST in $_DIRECTORY $vcs_info_msg_0_
-$_SYMBOL '
+## Initialize colors.
+#autoload -U colors
+#colors
+#
+## Set the initial values
+#_USERNAME=$USER
+#_DIRECTORY=$PWD
+#_HOST=$HOST
+#
+## Determine username variables and colors
+#if [[ $EUID -eq 0 ]]; then
+#    _USERNAME="%{$fg_bold[red]%}%n"
+#    _SYMBOL="%{$fg_bold[red]%}#"
+#else
+#    _USERNAME="%{$fg_bold[cyan]%}%n"
+#    _SYMBOL="%{$fg_bold[cyan]%}$"
+#fi
+#_USERNAME="$_USERNAME%{$reset_color%}"
+#_SYMBOL="$_SYMBOL%{$reset_color%}"
+#
+## Build host string
+#_HOST="%{$fg_bold[magenta]%}%m%{$reset_color%}"
+#
+## Build directory string
+#_DIRECTORY="%{$fg_bold[blue]%}%~%{$reset_color%}"
+#
+## Build up the last command return
+#_RETURN="$fg_bold[grey]%?%{$reset_color%}"
+#
+## Load in VCS info
+#autoload -Uz vcs_info
+#
+## Set the VCS formatting
+#zstyle ':vcs_info:*' formats "on %{$fg_bold[green]%}%b%{$reset_color%}"
+#
+## Run the vcs_info command before the prompt updates
+#precmd () { vcs_info }
+#
+#setopt prompt_subst
+#
+## Build prompt
+#PROMPT='$_USERNAME at $_HOST in $_DIRECTORY $vcs_info_msg_0_
+#$_SYMBOL '
